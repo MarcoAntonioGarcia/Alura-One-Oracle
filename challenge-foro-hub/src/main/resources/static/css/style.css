@@ -1,0 +1,46 @@
+/* bg-light from Bootstrap is F8F9FA, but we can add some custom touches here */
+
+body.content-body {
+    height: 100vh;
+}
+
+.form-signin {
+    max-width: 400px;
+    padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* Pagination improvements */
+.pagination {
+    margin-bottom: 0;
+}
+
+/* Hover effects for table */
+.table-hover tbody tr {
+    cursor: default;
+    transition: background-color 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f3f5 !important;
+}
+
+/* Nav brand */
+.navbar-brand {
+    font-size: 1.5rem;
+}
