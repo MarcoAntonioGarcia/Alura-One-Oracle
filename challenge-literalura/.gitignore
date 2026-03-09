@@ -1,0 +1,26 @@
+# Archivos compilados
+target/
+*.class
+
+# Entornos y dependencias de JavaScript (si se llegara a usar de nuevo)
+node_modules/
+package.json
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Archivos de la base de datos local y logging
+*.db
+*.log
+literalura.mv.db
+literalura.trace.db
+
+# Configuración de IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db

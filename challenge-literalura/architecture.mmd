@@ -1,0 +1,34 @@
+graph TD
+    User([Usuario Console]) -->|Input/Options| App[LiteraluraApplication/Principal]
+    
+    subgraph Spring Boot Application
+        App -->|Menu Options| LibSvc[LibraryService]
+        
+        LibSvc -.->|1. Search Book API| GutSvc[GutendexService]
+        GutSvc -.->|HTTP GET| ExternalAPI((Gutendex API\nhttps://gutendex.com/books/))
+        ExternalAPI -.->|JSON BookData| GutSvc
+        
+        LibSvc -->|2. Check Duplicates| BookRepo[(BookRepository)]
+        LibSvc -->|3. Check/Create Author| AuthRepo[(AuthorRepository)]
+        
+        LibSvc -->|4. Save| AuthRepo
+        LibSvc -->|5. Save Document| BookRepo
+        
+        LibSvc -->|Fetch Catalog| BookRepo
+        LibSvc -->|Search Authors by Year| AuthRepo
+        LibSvc -->|Count Books by Lang| BookRepo
+    end
+    
+    subgraph Database
+        BookRepo <-->|JPA/Hibernate| H2DB[(H2 Database)]
+        AuthRepo <-->|JPA/Hibernate| H2DB
+    end
+
+    classDef external fill:#f9f,stroke:#333,stroke-width:2px;
+    class ExternalAPI external;
+    
+    classDef internal fill:#bbf,stroke:#333,stroke-width:2px;
+    class App,LibSvc,GutSvc internal;
+    
+    classDef data fill:#dfd,stroke:#333,stroke-width:2px;
+    class BookRepo,AuthRepo,H2DB data;
