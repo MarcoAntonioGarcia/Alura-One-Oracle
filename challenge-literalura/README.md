@@ -1,75 +1,83 @@
-# Literalura - Catálogo de Libros al Instante 📚
+# Literalura - Instant Book Catalog
 
-Literalura es una aplicación de terminal desarrollada en **Java 17+** y **Spring Boot**, diseñada para buscar, catalogar y organizar información sobre libros y autores. La aplicación consume datos en tiempo real de la [API de Gutendex](https://gutendex.com/books/) y los almacena localmente utilizando una base de datos **H2 en memoria** con **Spring Data JPA**.
+Literalura is a terminal-based application built with **Java 17+** and **Spring Boot**. It is designed to search, catalog, and organize information about books and authors. The application consumes real-time data from the [Gutendex API](https://gutendex.com/books/) and stores it locally using an **in-memory H2 database** with **Spring Data JPA**.
 
 ![Java](https://img.shields.io/badge/Java-17+-orange) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.4-green) ![H2 Database](https://img.shields.io/badge/H2_Database-In_Memory-blue) ![License](https://img.shields.io/badge/License-MIT-blueviolet)
 
 ---
 
-## 🚀 Características Principales
+## Features
 
-*   **Búsqueda interactiva**: Encuentra libros por su título consultando la API pública de Gutendex.
-*   **Persistencia automática**: Guarda automáticamente los libros y sus autores en la base de datos para no tener que consultarlos a internet repetidamente.
-*   **Gestión de Catálogo**: 
-    *   Visualiza todos los libros registrados hasta el momento.
-    *   Lista todos los autores almacenados en tu sistema.
-*   **Filtros Inteligentes**:
-    *   Busca autores que estaban vivos en un año específico.
-    *   Obtén la cantidad total de libros registrados en un idioma en particular (Español, Inglés, Francés, Portugués, etc.).
-*   **Gestión de Errores Robustos**: Interfaz a prueba de fallos mediante el manejo cuidadoso de JSON (Jackson) y excepciones en consola.
+*   **Interactive Search**: Find books by title by querying the public Gutendex API.
+*   **Automatic Persistence**: Automatically saves books and their authors in the database to prevent redundant network requests.
+*   **Catalog Management**:
+    *   View all registered books.
+    *   List all stored authors in the system.
+*   **Targeted Filtering**:
+    *   Search for authors who were alive in a specific year.
+    *   Retrieve the total number of books registered in a particular language (e.g., English, Spanish, French, Portuguese).
+*   **Robust Error Handling**: Fail-safe interface featuring comprehensive JSON parsing (via Jackson) and console exception management.
 
 ---
 
-## 🏗️ Arquitectura y Flujo de Datos
+## Architecture and Data Flow
 
-A continuación, se detalla cómo se comunica la aplicación tanto interna como externamente. 
+The following details the application's internal and external communication mechanisms.
 
-El siguiente diagrama ilustra el flujo completo desde que el usuario elige interactuar con la consola hasta el guardado en base de datos.
+The architectural diagram below illustrates the complete flow, starting from user interaction with the console to database persistence.
 
 <p align="center">
-  <img src="workflow.png" alt="Diagrama de Arquitectura de Literalura" />
+  <img src="workflow.png" alt="Literalura Architecture Diagram" />
 </p>
 
-### Componentes Principales:
-1.  **Principal (Console UI)**: Actúa como el puente interactivo con el usuario recogiendo opciones.
-2.  **LibraryService**: Es el cerebro aplicativo. Coordina la validación de registros existentes, organiza búsquedas en GutendexService y comanda el almacenamiento en los repositorios de bases de datos.
-3.  **GutendexService**: Contiene el `HttpClient` configurado para hacer peticiones mediante GET a la API externa de Gutendex y serializar la respuesta (Record Structs) usando la librería Jackson.
-4.  **Repositorios JPA (AuthorRepository / BookRepository)**: Interfaces autogestionadas por Spring Data Hibernate para manipular directamente los datos relacionales en la base de H2 local.
+### Core Components
+
+1.  **Console UI**: Serves as the interactive bridge, collecting options and input from the user.
+2.  **LibraryService**: The core application logic. It coordinates existing record validation, orchestrates `GutendexService` queries, and commands storage operations via repository interfaces.
+3.  **GutendexService**: Utilizes a configured `HttpClient` to perform `GET` requests to the external Gutendex API. It deserializes the JSON response into Java Records using the Jackson library.
+4.  **JPA Repositories (AuthorRepository / BookRepository)**: Spring Data JPA interfaces that directly manage relational data within the local H2 database.
 
 ---
 
-## 🛠️ Tecnologías y Dependencias
+## Technologies and Dependencies
 
-*   **Java 17**: Core del lenguaje.
-*   **Spring Boot (3.2.4)**: Framework base incluyendo `Spring Boot Starter` y `Spring Boot Starter Data JPA`.
-*   **H2 Database**: Base de datos relacional ultraligera en memoria. (Inicia automáticamente en `jdbc:h2:mem:literalura`).
-*   **Jackson Databind / Annotations**: Mapeo directo de JSONs externos a Records de Java.
-*   **JUnit 5 y Mockito**: Ecosistema completo de Pruebas Unitarias, de Integración y End-To-End.
+*   **Java 17**: Core programming language.
+*   **Spring Boot (3.2.4)**: Base framework, utilizing `spring-boot-starter` and `spring-boot-starter-data-jpa`.
+*   **H2 Database**: Ultra-lightweight in-memory relational database. (Bootstraps automatically at `jdbc:h2:mem:literalura`).
+*   **Jackson**: Direct mapping of external JSON responses to Java Records.
+*   **JUnit 5 & Mockito**: Comprehensive testing ecosystem for unit and integration testing.
 
 ---
 
-## 📦 Instalación y Ejecución
+## Installation and Setup
 
-Para ejecutar este proyecto de manera local, asegúrate de tener instalado Java 17 (o superior) y el gestor de dependencias Maven.
+To run this project locally, ensure you have Java 17 (or higher) and Maven installed.
 
-1.  **Clona este repositorio**.
-2.  **Abre una terminal** en la carpeta principal del proyecto (donde reside el archivo `pom.xml`).
-3.  **Compila y descarga las dependencias**:
+1.  **Clone the repository** and navigate to the project directory:
+    ```bash
+    git clone <repository-url>
+    cd literalura
+    ```
+
+2.  **Compile and download dependencies**:
     ```bash
     mvn clean compile
     ```
-4.  **Ejecuta las pruebas automatizadas** para corroborar la salud del sistema:
+
+3.  **Execute automated tests** to verify system health:
     ```bash
     mvn test
     ```
-5.  **Inicia la aplicación**:
+
+4.  **Run the application**:
     ```bash
     mvn spring-boot:run
     ```
 
-El menú de consola se desplegará automáticamente y estará listo para recibir comandos numerados.
+The console menu will launch automatically and prompt for numbered command inputs.
 
 ---
 
-### Detalles del Equipo / Autor
-Alura Challenge Literalura - Creado para el aprendizaje en arquitectura y consumo de APIs de Backend usando Java.
+## License and Authorship
+
+Alura Challenge Literalura - Created as an educational project focused on backend architecture and API consumption using Java.
