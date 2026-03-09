@@ -1,0 +1,11 @@
+com/alura/literalura/principal/Principal.class
+com/alura/literalura/LiteraluraApplication.class
+com/alura/literalura/repository/BookRepository.class
+com/alura/literalura/model/ApiResponse.class
+com/alura/literalura/service/LibraryService.class
+com/alura/literalura/service/GutendexService.class
+com/alura/literalura/repository/AuthorRepository.class
+com/alura/literalura/model/Author.class
+com/alura/literalura/model/BookData.class
+com/alura/literalura/model/Book.class
+com/alura/literalura/model/AuthorData.class
