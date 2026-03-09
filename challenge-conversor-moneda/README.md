@@ -1,61 +1,81 @@
-# Challenge Conversor de Monedas
+# Currency Converter
 
-Este es un proyecto de una aplicación de consola en Java que funciona como un conversor de monedas utilizando tasas de cambio en tiempo real. Este proyecto es parte del challenge del programa Alura ONE (Oracle Next Education).
+[![Java Version](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+[![Maven](https://img.shields.io/badge/Maven-3.8%2B-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)](https://maven.apache.org/)
 
-## Funcionalidades
+A robust, terminal-based Java application that provides real-time currency conversion using live exchange rates. This project was developed as part of the Alura ONE (Oracle Next Education) challenge, demonstrating practical applications of Object-Oriented Programming, API integration, and JSON parsing in Java.
 
-El conversor permite realizar las siguientes conversiones de moneda a través de un menú interactivo:
+## Table of Contents
 
-1. Dólar (USD) a Peso argentino (ARS)
-2. Peso argentino (ARS) a Dólar (USD)
-3. Dólar (USD) a Real brasileño (BRL)
-4. Real brasileño (BRL) a Dólar (USD)
-5. Dólar (USD) a Peso colombiano (COP)
-6. Peso colombiano (COP) a Dólar (USD)
+- [Overview](#overview)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Prerequisites](#prerequisites)
+- [Installation and Execution](#installation-and-execution)
+- [Technologies](#technologies)
+- [Author](#author)
 
-Además, extrae el valor de la moneda ingresada y devuelve la conversión exacta basada en los datos obtenidos de la API de ExchangeRate-API.
+## Overview
 
-## Tecnologías Utilizadas
+The Currency Converter retrieves current exchange rates via the [ExchangeRate-API](https://www.exchangerate-api.com/) and provides accurate, up-to-the-minute conversions. The application is designed with a clean architecture, ensuring strict separation of concerns between external HTTP communication, data mapping, and the user interface.
 
-- **Java 17**
-- **Maven** (Gestor de dependencias)
-- **Gson (Google)** para el parseo de datos JSON
-- **ExchangeRate-API** para obtener las tasas de cambio actualizadas
+## Features
 
-## Requisitos Previos
+- **Interactive CLI Menu:** User-friendly terminal interface for seamless navigation.
+- **Real-Time Exchange Rates:** Fetches live data from external services.
+- **Robust Error Handling:** Validates user inputs and handles API timeouts or parsing errors gracefully.
+- **Supported Conversions:**
+  - USD (US Dollar) ↔ ARS (Argentine Peso)
+  - USD (US Dollar) ↔ BRL (Brazilian Real)
+  - USD (US Dollar) ↔ COP (Colombian Peso)
+  - *Extensible design to support additional currency pairs.*
 
-- Tener instalado [Java JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) o superior.
-- Tener instalado [Maven](https://maven.apache.org/download.cgi).
-- (Opcional) Una API Key gratuita en [ExchangeRate-API](https://www.exchangerate-api.com/). Actualmente el proyecto tiene una configurada para pruebas.
+## Architecture
 
-## Cómo Ejecutar el Proyecto
+The application is structured to follow strict Object-Oriented Programming (OOP) principles:
 
-### Opción 1: Desde la Terminal (usando Maven)
+- **`Principal`**: The application entry point, responsible solely for bootstrapping the components.
+- **`MenuUI`**: Manages terminal input/output and user interactions.
+- **`ExchangeClient`**: Handles HTTP communication with the ExchangeRate-API via `java.net.http.HttpClient`.
+- **`CurrencyConverter`**: Encapsulates business logic, data transformation, and JSON mapping using Records.
 
-1. Abre tu terminal o línea de comandos.
-2. Navega hasta el directorio raíz del proyecto (`challenge-conversor-moneda`).
-3. Ejecuta el siguiente comando para limpiar, compilar y ejecutar la aplicación:
+## Prerequisites
 
-```bash
-mvn clean compile exec:java -Dexec.mainClass="com.alura.conversor.Principal"
-```
+Before you begin, ensure you have the following installed on your local machine:
 
-### Opción 2: Usar un IDE (IntelliJ IDEA, Eclipse, VS Code)
+- [Java JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) (or higher)
+- [Apache Maven](https://maven.apache.org/download.cgi)
+- *Optional:* A free API key from [ExchangeRate-API](https://www.exchangerate-api.com/). (A default testing environment is provided).
 
-1. Importa el proyecto como un proyecto de Maven.
-2. Espera a que el IDE descargue las dependencias definidas en el archivo `pom.xml` (en este caso, Gson).
-3. Navega hasta `src/main/java/com/alura/conversor/Principal.java`.
-4. Ejecuta la clase `Principal` haciendo clic en "Run".
+## Installation and Execution
 
-## Estructura del Código
+### Method 1: Using the Terminal (Maven)
 
-El proyecto sigue una arquitectura con separación de responsabilidades:
+1. Clone the repository and/or navigate to the project directory:
+   ```bash
+   cd challenge-conversor-moneda
+   ```
 
-- `Principal`: Punto de entrada de la aplicación.
-- Componentes de interfaz (Menú interactivo).
-- Cliente HTTP (`ExchangeClient`) para llamar a la API externa.
-- Lógica de conversión y mapeo de JSON a Records en Java.
+2. Clean, compile, and run the application directly via Maven:
+   ```bash
+   mvn clean compile exec:java -Dexec.mainClass="com.alura.conversor.Principal"
+   ```
 
-## Autor
+### Method 2: Using an IDE
 
-Desarrollado para el Challenge de Alura - Oracle Next Education.
+1. Open your preferred Java IDE (IntelliJ IDEA, Eclipse, or VS Code).
+2. Import the root directory as a **Maven Project**.
+3. Allow the IDE to resolve dependencies defined in the `pom.xml`.
+4. Navigate to `src/main/java/com/alura/conversor/Principal.java`.
+5. Run the `Principal` class.
+
+## Technologies
+
+- **Java 17**: Core language implementing HTTP clients and structural Records.
+- **Maven**: Build automation and dependency management.
+- **Gson (Google)**: High-performance JSON serialization and deserialization.
+- **ExchangeRate-API**: External provider for accurate currency market data.
+
+## Author
+
+Developed as a programmatic challenge for **Alura - Oracle Next Education**.
