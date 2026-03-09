@@ -1,88 +1,88 @@
-# 💬 Foro Hub API & Web
+# Foro Hub API & Web
 
-FórumHub es una plataforma de foros (Backend + Frontend integrado) donde los estudiantes pueden registrar, consultar, actualizar y eliminar sus dudas (tópicos).
+ForumHub is a forum platform (Backend + Frontend integrated) where students can register, query, update, and delete their questions (topics).
 
-El sistema se compone de una API RESTful construida con **Java y Spring Boot 3**, respaldada por una base de datos MySQL 8 gestionada vía Docker, y cuenta con un **cliente web HTML/Bootstrap puro (Vanilla JS)** que consume la propia API para brindar una interfaz gráfica sencilla y funcional desde el mismo puerto `8080`.
+The system consists of a RESTful API built with Java and Spring Boot 3, backed by a MySQL 8 database managed via Docker. It also features a pure HTML/Bootstrap (Vanilla JS) web client that consumes the API to provide a simple and functional graphical interface served from the same `8080` port.
 
-## 🛠️ Tecnologías Utilizadas
+## Technologies Used
 
-- **Java 17** (o superior)
+- **Java 17** (or higher)
 - **Spring Boot 3.3.4** (Web, Data JPA, Validation, Security)
-- **Spring Security 6** (con JSON Web Tokens - JWT)
-- **MySQL 8** (Containerizado en Docker)
-- **Flyway** (Migraciones y control de versiones de Base de Datos)
-- **Bootstrap 5 & Vanilla JS** (Vistas ligeras de frontend)
-- **Maven** (Gestor de dependencias)
+- **Spring Security 6** (with JSON Web Tokens - JWT)
+- **MySQL 8** (Docker containerized)
+- **Flyway** (Database migrations and version control)
+- **Bootstrap 5 & Vanilla JS** (Lightweight frontend views)
+- **Maven** (Dependency management)
 
 ---
 
-## 🚀 Cómo Levantar el Proyecto
+## Getting Started
 
-### 1. Iniciar la Base de Datos (MySQL)
-Debes tener Docker instalado. Abre una terminal en la raíz de este proyecto y ejecuta:
+### 1. Start the Database (MySQL)
+Ensure Docker is installed. Open a terminal in the root directory of this project and execute:
 
 ```bash
 docker compose up -d
 ```
-*(Esto levantará el contenedor `forumhub_db` en el puerto `3306` usando la red `forumhub-network`)*
+*(This will start the `forumhub_db` container on port `3306` using the `forumhub-network` network)*
 
-### 2. Iniciar la Aplicación (Spring Boot)
-Una vez que el Docker esté listo, ejecuta la aplicación desde tu terminal usando Maven:
+### 2. Start the Application (Spring Boot)
+Once the Docker container is running, execute the application from your terminal using Maven:
 
 ```bash
 mvn spring-boot:run
 ```
-*(O ejecuta la clase principal `ChallengeForoHubApplication.java` directamente en tu IDE).*
+*(Alternatively, run the main class `ChallengeForoHubApplication.java` directly in your IDE).*
 
-Cuando el servidor arranque, Flyway creará automáticamente las tablas necesarias y registrará al usuario administrador.
+When the server starts, Flyway will automatically create the necessary tables and register the administrator user.
 
-### 3. Detener la Aplicación y Base de Datos
-Para detener la aplicación de Spring Boot en la terminal, presiona `Ctrl + C`. Si el puerto se queda "pegado" en uso, puedes matarlo con `kill -9 $(lsof -t -i:8080)`.
+### 3. Stop the Application and Database
+To stop the Spring Boot application in the terminal, press `Ctrl + C`. If the port remains in use, you can terminate the process with `kill -9 $(lsof -t -i:8080)`.
 
-Para apagar la base de datos MySQL y limpiar la terminal, ejecuta:
+To shut down the MySQL database and clean up the terminal, execute:
 ```bash
 docker compose down
 ```
 
 ---
 
-## 🖥️ Manual de Uso: Interfaz Gráfica
+## User Manual: Graphical Interface
 
-Una vez que la aplicación esté corriendo, nuestra interfaz gráfica web te permitirá gestionar el foro sin necesidad de usar herramientas externas como Postman.
+Once the application is running, the graphical web interface allows you to manage the forum without needing external tools like Postman.
 
-Ve a tu navegador web favorito y entra a:
-👉 **[http://localhost:8080](http://localhost:8080)**
+Open your preferred web browser and navigate to:
+**[http://localhost:8080](http://localhost:8080)**
 
-### Credenciales de Acceso
-El sistema viene con una cuenta administradora pre-cargada:
-- **Usuario:** `admin`
-- **Contraseña:** `123456`
+### Access Credentials
+The system includes a pre-loaded administrator account:
+- **Username:** `admin`
+- **Password:** `123456`
 
-### Flujo Web
-1. **Login:** Al ingresar, el sistema guardará de forma segura el token JWT en el navegador local (`localStorage`).
-2. **Dashboard:** Tras el inicio de sesión exitoso, verás la lista de tópicos. Los botones te permiten regresar al formulario de edición o eliminar el registro.
-3. **Formulario:** El botón "Nuevo Tópico" te abrirá un formulario validado para crear tus dudas y guardarlas en la base de datos.
+### Web Workflow
+1. **Login:** Upon entry, the system will securely store the JWT token in the local browser storage (`localStorage`).
+2. **Dashboard:** After a successful login, you will see the list of topics. The available buttons allow you to return to the edit form or delete the record.
+3. **Form:** The "New Topic" button will open a validated form to create your questions and save them to the database.
 
 ---
 
-## 🔌 API Endpoints
-Si prefieres interactuar directamente o crear tu propio Frontend en el futuro, los endpoints disponibles bajo la protección JWT son:
+## API Endpoints
+If you prefer to interact directly or create your own frontend in the future, the available endpoints under JWT protection are:
 
-| Método | Endpoint | Descripción | Body/Params |
+| Method | Endpoint | Description | Body/Params |
 |:---:|:---|:---|:---|
-| **POST** | `/login` | Autentica al usuario y devuelve el JWT | JSON: `{"login", "clave"}` |
-| **GET** | `/topicos` | Lista los tópicos con paginación | Query: `?page=0&size=10` |
-| **GET** | `/topicos/{id}` | Muestra el detalle de un tópico específico| URL Var: `id` numérico |
-| **POST** | `/topicos` | Crea un nuevo tópico | JSON: `{"titulo","mensaje","autor","curso"}`|
-| **PUT** | `/topicos/{id}` | Actualiza el título y/o mensaje de un tópico | JSON: `{"titulo","mensaje"}` |
-| **DELETE** | `/topicos/{id}` | Borra el tópico y lo saca de la base de datos | URL Var: `id` numérico |
+| **POST** | `/login` | Authenticates the user and returns the JWT | JSON: `{"login", "clave"}` |
+| **GET** | `/topicos` | Lists topics with pagination | Query: `?page=0&size=10` |
+| **GET** | `/topicos/{id}` | Displays the details of a specific topic | URL Var: numeric `id` |
+| **POST** | `/topicos` | Creates a new topic | JSON: `{"titulo","mensaje","autor","curso"}`|
+| **PUT** | `/topicos/{id}` | Updates the title and/or message of a topic | JSON: `{"titulo","mensaje"}` |
+| **DELETE** | `/topicos/{id}` | Deletes the topic from the database | URL Var: numeric `id` |
 
-*Nota: Todas las rutas `/topicos` requieren el header: `Authorization: Bearer <tu_token_jwt_aqui>`*
+*Note: All `/topicos` routes require the following header: `Authorization: Bearer <your_jwt_token_here>`*
 
 <br>
 <br>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Hecho%20con-🚀%20Spring%20Boot-green" alt="spring-boot">
-  <img src="https://img.shields.io/badge/Status-Finalizado-blue" alt="status">
+  <img src="https://img.shields.io/badge/Built%20with-Spring%20Boot-green" alt="spring-boot">
+  <img src="https://img.shields.io/badge/Status-Completed-blue" alt="status">
 </p>
