@@ -1,59 +1,32 @@
-# 💻 Alura-ONE–Oracle
+# Alura ONE Oracle
 
-## English 🇺🇸
+This repository contains the applications, challenges, and exercises developed during the ONE (Oracle Next Education) program in collaboration with Alura Latam. The curriculum offers intensive training in software development and data analysis, blending theoretical concepts with hands-on engineering practices to build modern, scalable software solutions.
 
-This repository contains projects and exercises developed during my participation in the **ONE - Oracle Next Education** program, in collaboration with **Alura Latam**.  
-The program lasts **1 year** and offers intensive training in **Development** and **Data Analysis**, blending theory and practice to build in-demand technical skills.
+## Architecture & Structure
 
-### 📚 Program Goal  
-To strengthen my technical skills, build applied projects, and broaden professional opportunities in tech.  
-I will explore both **Development** and **Data Analysis** to strategically decide my specialization.
+This repository functions as a monorepo housing several standalone projects, each representing a distinct challenge within the curriculum:
 
-### 🚀 Personal Focus  
-With experience in data analysis and training from Coursera and Udemy, I will use this program to determine whether to specialize in data or diversify into development.
+- **challenge-amigo-secreto**: A web-based application to manage and draw names for a secret santa event.
+- **challenge-conversor-moneda**: A Java-based currency converter console application consuming external exchange rate APIs.
+- **challenge-foro-hub**: A RESTful API for forum topic management built with Spring Boot, Spring Security, JWT authentication, and Flyway database migrations.
+- **challenge-literalura**: A Spring Boot console application interacting with the Gutendex API for literature data processing and PostgreSQL persistence.
 
-### 📂 Contents  
-- Practical projects  
-- Exercises and challenges  
-- Documentation and notes  
-- Additional resources  
+## Tech Stack
 
-### 🛠️ Technologies  
-- Python, JavaScript, Java  
-- Pandas, NumPy, Matplotlib  
-- SQL  
-- HTML, CSS  
-- Git/GitHub  
+The projects across this repository showcase proficiency in a diverse set of technologies, chosen based on the specific domain (backend development vs. data analysis):
 
-### 📅 Progress  
-The README will be updated as I advance through the program.
+- **Backend Architecture**: Java 17+, Spring Boot 3+, Spring Data JPA, Spring Security
+- **Data & Scripting**: Python, Pandas, NumPy, Matplotlib
+- **Database Management**: PostgreSQL, MySQL, Flyway
+- **Frontend / Client**: HTML, CSS, JavaScript
+- **Infrastructure & Tools**: Docker, Git, GitHub
 
----
+## Program Objectives
 
-## Español 🇪🇸
+1. **Applied Engineering**: Develop production-ready applications adhering to clean code, SOLID principles, and layered architecture.
+2. **Domain Exploration**: Evaluate and execute projects in both software development and data analysis to determine a strategic career specialization.
+3. **Robust Integrations**: Build scalable systems capable of reliably consuming external APIs and exposing secure, well-documented RESTful web services.
 
-Este repositorio contiene los proyectos y ejercicios desarrollados durante mi participación en el programa **ONE - Oracle Next Education**, en colaboración con **Alura Latam**.  
-El programa tiene una duración de **1 año** y ofrece formación intensiva en **Desarrollo** y **Análisis de Datos**, combinando teoría y práctica para adquirir habilidades técnicas demandadas.
+## Development Progress
 
-### 📚 Objetivo del programa  
-Fortalecer mis competencias técnicas, desarrollar proyectos aplicados y ampliar mis oportunidades profesionales en tecnología.  
-Exploraré ambas áreas —**Desarrollo** y **Datos**— para decidir mi especialización estratégica.
-
-### 🚀 Mi enfoque personal  
-Con experiencia en análisis de datos y formación en Coursera y Udemy, usaré este programa para definir si me especializo en análisis o diversifico hacia desarrollo.
-
-### 📂 Contenido  
-- Proyectos prácticos  
-- Ejercicios y retos  
-- Documentación y notas  
-- Recursos adicionales  
-
-### 🛠️ Tecnologías  
-- Python, JavaScript, Java  
-- Pandas, NumPy, Matplotlib  
-- SQL  
-- HTML, CSS  
-- Git/GitHub  
-
-### 📅 Progreso  
-El README se actualizará conforme avance en el programa.
+This repository is actively maintained and continuously updated. New modules are added as they are conceptualized and built throughout the one-year duration of the program.
